@@ -1,0 +1,7 @@
+.currentBtn {
+  background-color: green;
+}
+
+.pagination__pages {
+  display: inline-block;
+}

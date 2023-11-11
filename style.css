@@ -153,3 +153,11 @@ body {
     transform: rotate(1turn)
   }
 }
+
+.currentBtn {
+  background-color: green;
+}
+
+.pagination__pages {
+  display: inline-block;
+}

@@ -26,12 +26,19 @@ body {
 .movies {
 
   width: 100%;
+  max-width: 735px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 2rem;
   font-size: 2rem;
   opacity: 0;
   transition: opacity 1s;
+}
+
+@media only screen and (min-width: 1180px) {
+  .movies {
+    max-width: 1160px;
+  }
 }
 
 .movie {

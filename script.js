@@ -103,8 +103,7 @@ async function main() {
   let currentPage = 1;
   // fetch movies data count
   const initMovieData = await getMoviesData(1);
-  const movieCount = initMovieData.movie_count;
-  const pageCount = Math.ceil(movieCount / 10);
+  const pageCount = Math.ceil(initMovieData.movie_count / 10);
   // inject first, last buttons
   pageNav.insertAdjacentHTML('afterbegin', makeSpecialBtn('first', 1));
   pageNav.insertAdjacentHTML('beforeend', makeSpecialBtn('last', pageCount));
@@ -112,12 +111,12 @@ async function main() {
   renderPageBtns(1, paginationControlSize, pageCount);
   // listens for click to re-render pagination control
   document.addEventListener('click', async (e) => {
-    currentPage = parseInt(e.target.dataset.page);
     if (e.target.classList.contains('pageBtn')) {
+      currentPage = parseInt(e.target.dataset.page);
+      // TODO: ENCAPSULATE BELOW
       renderPageBtns(currentPage, paginationControlSize, pageCount);
       displayLoad();
       let movieData = await getMoviesData(currentPage, paginationControlSize);
-      console.log(movieData);
       displayMovies(movieData);
     }
   });

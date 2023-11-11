@@ -98,30 +98,37 @@ async function getMoviesData(page, itemLimit = 10) {
   }
 }
 
+async function renderPage(page, paginationSize = 10, maxPageCount) {
+  renderPageBtns(page, paginationSize, maxPageCount);
+  displayLoad();
+  let movieData = await getMoviesData(page, paginationSize);
+  displayMovies(movieData);
+}
+
 async function main() {
   const paginationControlSize = 10;
-  let currentPage = 1;
+
   // fetch movies data count
   const initMovieData = await getMoviesData(1);
   const pageCount = Math.ceil(initMovieData.movie_count / 10);
   // inject first, last buttons
+
   pageNav.insertAdjacentHTML('afterbegin', makeSpecialBtn('first', 1));
   pageNav.insertAdjacentHTML('beforeend', makeSpecialBtn('last', pageCount));
+
   // initialize 10 buttons
-  renderPageBtns(1, paginationControlSize, pageCount);
+  renderPage(1, paginationControlSize, pageCount);
+
   // listens for click to re-render pagination control
   document.addEventListener('click', async (e) => {
     if (e.target.classList.contains('pageBtn')) {
-      currentPage = parseInt(e.target.dataset.page);
-      // TODO: ENCAPSULATE BELOW
-      renderPageBtns(currentPage, paginationControlSize, pageCount);
-      displayLoad();
-      let movieData = await getMoviesData(currentPage, paginationControlSize);
-      displayMovies(movieData);
+      renderPage(
+        parseInt(e.target.dataset.page),
+        paginationControlSize,
+        pageCount
+      );
     }
   });
-
-  displayMovies(initMovieData);
 }
 
 main();

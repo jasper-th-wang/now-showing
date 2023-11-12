@@ -88,7 +88,6 @@ function makePageNumberBtn(pageNumber, current = false) {
  * @param {integer} pageCount - the max value of the pagination control
  */
 function renderPaginationControl(start, pageSize, pageCount) {
-  // Clear the content in pageControl container
   paginationControlContainer.innerHTML = '';
   let buttons = '';
   for (let i = start; i < start + pageSize; i++) {
@@ -180,7 +179,6 @@ async function getMaxPageCount() {
  * @param {integer} maxPageCount - number of pages to display all movies
  */
 async function initFirstPageOfMoviesAndPaginationControl(maxPageCount) {
-  // inject first, last buttons
   paginationControlOuterContainer.insertAdjacentHTML(
     'afterbegin',
     makeNamedBtnWithValueOf('first', 1)
@@ -190,7 +188,6 @@ async function initFirstPageOfMoviesAndPaginationControl(maxPageCount) {
     makeNamedBtnWithValueOf('last', maxPageCount)
   );
 
-  // initialize pagination controls and movies
   renderPageOfMoviesAndPaginationControl(
     1,
     maxCountOfPageNumberBtns,
@@ -205,7 +202,6 @@ async function main() {
   const maxPageCount = await getMaxPageCount();
   initFirstPageOfMoviesAndPaginationControl(maxPageCount);
 
-  // listens for click to re-render pagination control
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('pageBtn')) {
       renderPageOfMoviesAndPaginationControl(

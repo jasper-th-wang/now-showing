@@ -186,11 +186,7 @@ async function initializePage(maxPageCount) {
     makeNamedBtnWithValueOf('last', maxPageCount)
   );
 
-  renderPageOfMoviesAndPaginationControl(
-    1,
-    NUMBER_OF_PAGE_NUMBER_BUTTONS,
-    maxPageCount
-  );
+  renderPageOfMoviesAndPaginationControl(1, maxPageCount);
 }
 
 /**

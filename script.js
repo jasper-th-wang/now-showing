@@ -176,7 +176,7 @@ async function getMaxPageCount() {
  *
  * @param {integer} maxPageCount - number of pages to display all movies
  */
-async function initFirstPageOfMoviesAndPaginationControl(maxPageCount) {
+async function initializePage(maxPageCount) {
   paginationControlOuterContainer.insertAdjacentHTML(
     'afterbegin',
     makeNamedBtnWithValueOf('first', 1)
@@ -198,7 +198,7 @@ async function initFirstPageOfMoviesAndPaginationControl(maxPageCount) {
  */
 async function main() {
   const maxPageCount = await getMaxPageCount();
-  initFirstPageOfMoviesAndPaginationControl(maxPageCount);
+  initializePage(maxPageCount);
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('pageBtn')) {

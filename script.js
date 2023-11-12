@@ -1,6 +1,5 @@
 'use strict';
 const paginationControlSize = 10;
-// let maxPageCount;
 const moviesContainer = document.querySelector('.movies');
 const loaderContainer = document.querySelector('.loader-container');
 const pageNav = document.getElementById('pageNav');

@@ -162,8 +162,8 @@ async function main() {
   // fetch movies data count
   const initMovieData = await getMoviesData(1);
   const pageCount = Math.ceil(initMovieData.movie_count / 10);
-  // inject first, last buttons
 
+  // inject first, last buttons
   pageNav.insertAdjacentHTML('afterbegin', makeSpecialBtn('first', 1));
   pageNav.insertAdjacentHTML('beforeend', makeSpecialBtn('last', pageCount));
 

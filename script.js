@@ -4,6 +4,14 @@ const pageNav = document.getElementById('pageNav');
 const pageControl = document.getElementById('paginationControl');
 
 /**
+ * Display loading screen
+ */
+function displayLoad() {
+  moviesContainer.style.opacity = 0;
+  loaderContainer.style.display = 'grid';
+}
+
+/**
  * Render one movie using JSON data fetched from YTS api
  *
  * @param {JSON object} data - data of one movie formatted in JSON format
@@ -37,14 +45,6 @@ async function displayMovies(movieData) {
   movieData.movies.forEach((movie) => renderMovie(movie));
   moviesContainer.style.opacity = 1;
   loaderContainer.style.display = 'none';
-}
-
-/**
- * Display loading screen
- */
-function displayLoad() {
-  moviesContainer.style.opacity = 0;
-  loaderContainer.style.display = 'grid';
 }
 
 /**
@@ -125,8 +125,16 @@ function renderPageBtns(start, pageSize, pageCount) {
 async function renderPage(page, paginationSize = 10, maxPageCount) {
   renderPageBtns(page, paginationSize, maxPageCount);
   displayLoad();
-  let movieData = await getMoviesData(page, paginationSize);
-  displayMovies(movieData);
+
+  try {
+    let movieData = await getMoviesData(page, paginationSize);
+    displayMovies(movieData);
+  } catch (error) {
+    console.error('Something wen wrong here!' + error);
+    moviesContainer.style.opacity = 1;
+    loaderContainer.style.display = 'none';
+    moviesContainer.innerHTML = `<p style="margin: 0 auto;">Something went wrong, please check your internet connection and try again!</p>`;
+  }
 }
 
 /**
@@ -137,20 +145,16 @@ async function renderPage(page, paginationSize = 10, maxPageCount) {
  * @returns the fetched data formatted as a JSON object
  */
 async function getMoviesData(page, itemLimit = 10) {
-  try {
-    const response = await fetch(
-      `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=${itemLimit}`
-    );
+  const response = await fetch(
+    `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=${itemLimit}`
+  );
 
-    if (!response.ok) {
-      throw new Error('Something went wrong with the query ⚠️');
-    }
-    const responseJson = await response.json();
-
-    return responseJson.data;
-  } catch (error) {
-    console.error(error);
+  if (!response.ok) {
+    throw new Error('Something went wrong with the query ⚠,  response not OK️');
   }
+  const responseJson = await response.json();
+
+  return responseJson.data;
 }
 
 /**

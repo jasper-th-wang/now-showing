@@ -193,7 +193,7 @@ async function main() {
   initFirstPageAndPaginationControl(maxPageCount);
 
   // listens for click to re-render pagination control
-  document.addEventListener('click', async (e) => {
+  document.addEventListener('click', (e) => {
     if (e.target.classList.contains('pageBtn')) {
       renderPageAndPaginationControl(
         parseInt(e.target.dataset.page),

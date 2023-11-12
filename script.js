@@ -164,9 +164,9 @@ async function getMoviesData(page) {
 }
 
 /**
- * Get max page count by querying YTS api
+ * Get max page number by querying YTS api
  */
-async function getMaxPageCount() {
+async function getMaxPageNumber() {
   const initMovieData = await getMoviesData(1);
   return Math.ceil(initMovieData.movie_count / 10);
 }
@@ -174,26 +174,26 @@ async function getMaxPageCount() {
 /**
  * Initialize page on first page load
  *
- * @param {integer} maxPageCount - number of pages to display all movies
+ * @param {integer} maxPageNumber - number of pages to display all movies
  */
-async function initializePage(maxPageCount) {
+async function initializePage(maxPageNumber) {
   paginationControlOuterContainer.insertAdjacentHTML(
     'afterbegin',
     makeNamedBtnWithValueOf('first', 1)
   );
   paginationControlOuterContainer.insertAdjacentHTML(
     'beforeend',
-    makeNamedBtnWithValueOf('last', maxPageCount)
+    makeNamedBtnWithValueOf('last', maxPageNumber)
   );
 
-  renderPageOfMoviesAndPaginationControl(1, maxPageCount);
+  renderPageOfMoviesAndPaginationControl(1, maxPageNumber);
 }
 
 /**
  * Initialize all presentation logic and event listeners
  */
 async function main() {
-  const maxPageNumber = await getMaxPageCount();
+  const maxPageNumber = await getMaxPageNumber();
   initializePage(maxPageNumber);
 
   document.addEventListener('click', (e) => {

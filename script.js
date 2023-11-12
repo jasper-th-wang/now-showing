@@ -167,8 +167,8 @@ async function getMoviesData(page) {
  * Get max page number by querying YTS api
  */
 async function getMaxPageNumber() {
-  const initMovieData = await getMoviesData(1);
-  return Math.ceil(initMovieData.movie_count / 10);
+  const { movie_count } = await getMoviesData(1);
+  return Math.ceil(movie_count / 10);
 }
 
 /**

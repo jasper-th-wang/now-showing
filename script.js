@@ -116,6 +116,20 @@ function renderPageBtns(start, pageSize, pageCount) {
 }
 
 /**
+ * Render both pagination control and movies
+ *
+ * @param {integer} page - the value of the current page
+ * @param {*} paginationSize - the max number of page button in the pagination control
+ * @param {*} maxPageCount - the max value of the pagination control
+ */
+async function renderPage(page, paginationSize = 10, maxPageCount) {
+  renderPageBtns(page, paginationSize, maxPageCount);
+  displayLoad();
+  let movieData = await getMoviesData(page, paginationSize);
+  displayMovies(movieData);
+}
+
+/**
  * Fetch movie data from the YTS api
  *
  * @param {integer} page - the page number for the get request
@@ -137,20 +151,6 @@ async function getMoviesData(page, itemLimit = 10) {
   } catch (error) {
     console.error(error);
   }
-}
-
-/**
- * Render both pagination control and movies
- *
- * @param {integer} page - the value of the current page
- * @param {*} paginationSize - the max number of page button in the pagination control
- * @param {*} maxPageCount - the max value of the pagination control
- */
-async function renderPage(page, paginationSize = 10, maxPageCount) {
-  renderPageBtns(page, paginationSize, maxPageCount);
-  displayLoad();
-  let movieData = await getMoviesData(page, paginationSize);
-  displayMovies(movieData);
 }
 
 /**

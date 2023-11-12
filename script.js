@@ -3,6 +3,11 @@ const loaderContainer = document.querySelector('.loader-container');
 const pageNav = document.getElementById('pageNav');
 const pageControl = document.getElementById('paginationControl');
 
+/**
+ * Render one movie using JSON data fetched from YTS api
+ *
+ * @param {JSON object} data - data of one movie formatted in JSON format
+ */
 function renderMovie(data) {
   const html = `
   <article class="movie">
@@ -22,6 +27,11 @@ function renderMovie(data) {
   moviesContainer.insertAdjacentHTML('beforeend', html);
 }
 
+/**
+ * Display Movies using JSON data fetched from YTS api
+ *
+ * @param {JSON object} movieData - movie data
+ */
 async function displayMovies(movieData) {
   moviesContainer.innerHTML = '';
   movieData.movies.forEach((movie) => renderMovie(movie));
@@ -29,17 +39,34 @@ async function displayMovies(movieData) {
   loaderContainer.style.display = 'none';
 }
 
+/**
+ * Display loading screen
+ */
 function displayLoad() {
   moviesContainer.style.opacity = 0;
   loaderContainer.style.display = 'grid';
 }
 
+/**
+ * Render a special button such as "Previous", "First"...etc.
+ *
+ * @param {string} name - the name of the button
+ * @param {integer} value - the page value of this button holds
+ * @returns a rendered special button
+ */
 function makeSpecialBtn(name, value = 0) {
   return `<button class="pageBtn" id="${name}Btn" data-page="${value}">${
     name.charAt(0).toUpperCase() + name.slice(1)
   }</button>`;
 }
 
+/**
+ * Render a page button
+ *
+ * @param {integer} pageNumber - the page value the button represent
+ * @param {boolean} current - whether the rendering button represents the current page
+ * @returns a rendered page button
+ */
 function makePageBtn(pageNumber, current = false) {
   const currentClass = current ? 'currentBtn' : '';
   return `<button class="${currentClass} pageBtn"
@@ -48,6 +75,13 @@ function makePageBtn(pageNumber, current = false) {
   </button>`;
 }
 
+/**
+ * Render the pagination buttons
+ *
+ * @param {integer} start - the starting page value
+ * @param {integer} pageSize - the max number of page button in the pagination control
+ * @param {*} pageCount - the max value of the pagination control
+ */
 function renderPageBtns(start, pageSize, pageCount) {
   // Clear the content in pageControl container
   pageControl.innerHTML = '';
@@ -81,6 +115,13 @@ function renderPageBtns(start, pageSize, pageCount) {
     );
 }
 
+/**
+ * Fetch movie data from the YTS api
+ *
+ * @param {integer} page - the page number for the get request
+ * @param {integer} itemLimit - the limit of how many movies to fetch in one request
+ * @returns the fetched data formatted as a JSON object
+ */
 async function getMoviesData(page, itemLimit = 10) {
   try {
     const response = await fetch(
@@ -98,6 +139,13 @@ async function getMoviesData(page, itemLimit = 10) {
   }
 }
 
+/**
+ * Render both pagination control and movies
+ *
+ * @param {integer} page - the value of the current page
+ * @param {*} paginationSize - the max number of page button in the pagination control
+ * @param {*} maxPageCount - the max value of the pagination control
+ */
 async function renderPage(page, paginationSize = 10, maxPageCount) {
   renderPageBtns(page, paginationSize, maxPageCount);
   displayLoad();
@@ -105,6 +153,9 @@ async function renderPage(page, paginationSize = 10, maxPageCount) {
   displayMovies(movieData);
 }
 
+/**
+ * Initialize presentation logic and event listeners
+ */
 async function main() {
   const paginationControlSize = 10;
 
@@ -116,7 +167,7 @@ async function main() {
   pageNav.insertAdjacentHTML('afterbegin', makeSpecialBtn('first', 1));
   pageNav.insertAdjacentHTML('beforeend', makeSpecialBtn('last', pageCount));
 
-  // initialize 10 buttons
+  // initialize pagination controls and movies
   renderPage(1, paginationControlSize, pageCount);
 
   // listens for click to re-render pagination control

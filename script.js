@@ -85,9 +85,9 @@ function makePageNumberBtn(pageNumber, current = false) {
  * Render the pagination buttons on the document
  *
  * @param {integer} start - the starting page value
- * @param {integer} pageCount - the max value of the pagination control
+ * @param {integer} maxPageNumber - the max value of the pagination control
  */
-function renderPaginationControl(start, pageCount) {
+function renderPaginationControl(start, maxPageNumber) {
   paginationControlContainer.innerHTML = '';
   let buttons = '';
   for (let i = start; i < start + NUMBER_OF_PAGE_NUMBER_BUTTONS; i++) {
@@ -96,7 +96,7 @@ function renderPaginationControl(start, pageCount) {
       continue;
     }
 
-    if (i > pageCount) {
+    if (i > maxPageNumber) {
       continue;
     }
 
@@ -112,7 +112,7 @@ function renderPaginationControl(start, pageCount) {
     );
   }
 
-  if (start < pageCount)
+  if (start < maxPageNumber)
     paginationControlContainer.insertAdjacentHTML(
       'beforeend',
       makeNamedBtnWithValueOf('Next', start + 1)
@@ -123,13 +123,13 @@ function renderPaginationControl(start, pageCount) {
  * Render both pagination control and movies on the document
  *
  * @param {integer} currentPage - the value of the current page
- * @param {integer} maxPageCount - the max value of the pagination control
+ * @param {integer} maxPageNumber - the max value of the pagination control
  */
 async function renderPageOfMoviesAndPaginationControl(
   currentPage,
-  maxPageCount
+  maxPageNumber
 ) {
-  renderPaginationControl(currentPage, maxPageCount);
+  renderPaginationControl(currentPage, maxPageNumber);
   displayLoadingScreen();
 
   try {

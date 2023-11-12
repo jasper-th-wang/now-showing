@@ -16,19 +16,19 @@ function displayLoadingScreen() {
 }
 
 /**
- * Render one movie using JSON data fetched from YTS api on the document
+ * Produce and return one movie card using inputted JSON data
  *
  * @param {JSON object} data - data of one movie formatted in JSON format
  */
-function renderMovie(data) {
-  const html = `
-  <article class="movie">
+function makeMovieCard(data) {
+  return `
+        <article class="movie">
           <img class="movie__img" src=${data.medium_cover_image} />
           <div class="movie__data">
             <h3 class="movie__name">${data.title}</h3>
-            <h4 class="movie__genres">Genres: ${
-              data.genres?.[0] || 'Not Sure'
-            }</h4>
+            <h4 class="movie__genres">
+            Genres: ${data.genres?.[0] || 'Not Sure'}
+            </h4>
           </div>
           <div class="movie__rating">
           <span class="material-symbols-outlined">star</span>
@@ -36,7 +36,6 @@ function renderMovie(data) {
           </div>
         </article>
         `;
-  moviesContainer.insertAdjacentHTML('beforeend', html);
 }
 
 /**
@@ -46,19 +45,21 @@ function renderMovie(data) {
  */
 async function renderPageOfMovies(movieData) {
   moviesContainer.innerHTML = '';
-  movieData.movies.forEach((movie) => renderMovie(movie));
+  movieData.movies.forEach((movie) =>
+    moviesContainer.insertAdjacentHTML('beforeend', makeMovieCard(movie))
+  );
   moviesContainer.style.opacity = 1;
   loaderContainer.style.display = 'none';
 }
 
 /**
- * Produce and return a special button such as "Previous", "First"...etc.
+ * Produce and return a named button such as "Previous", "First"...etc.
  *
  * @param {string} name - the name of the button
  * @param {integer} value - the page value of this button holds
  * @returns a rendered special button
  */
-function makeSpecialBtn(name, value = 0) {
+function makeNamedBtnWithValueOf(name, value = 0) {
   return `<button class="pageBtn" id="${name}Btn" data-page="${value}">${
     name.charAt(0).toUpperCase() + name.slice(1)
   }</button>`;
@@ -108,14 +109,14 @@ function renderPaginationControl(start, pageSize, pageCount) {
   if (start > 1) {
     paginationControlContainer.insertAdjacentHTML(
       'afterbegin',
-      makeSpecialBtn('Previous', start - 1)
+      makeNamedBtnWithValueOf('Previous', start - 1)
     );
   }
 
   if (start < pageCount)
     paginationControlContainer.insertAdjacentHTML(
       'beforeend',
-      makeSpecialBtn('Next', start + 1)
+      makeNamedBtnWithValueOf('Next', start + 1)
     );
 }
 
@@ -182,11 +183,11 @@ async function initFirstPageOfMoviesAndPaginationControl(maxPageCount) {
   // inject first, last buttons
   paginationControlOuterContainer.insertAdjacentHTML(
     'afterbegin',
-    makeSpecialBtn('first', 1)
+    makeNamedBtnWithValueOf('first', 1)
   );
   paginationControlOuterContainer.insertAdjacentHTML(
     'beforeend',
-    makeSpecialBtn('last', maxPageCount)
+    makeNamedBtnWithValueOf('last', maxPageCount)
   );
 
   // initialize pagination controls and movies

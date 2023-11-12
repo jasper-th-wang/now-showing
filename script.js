@@ -1,5 +1,6 @@
 'use strict';
-const maxCountOfPageNumberBtns = 10;
+const NUMBER_OF_PAGE_NUMBER_BUTTONS = 10;
+const NUMBER_OF_MOVIES_PER_PAGE = 10;
 const moviesContainer = document.querySelector('.movies');
 const loaderContainer = document.querySelector('.loader-container');
 const paginationControlOuterContainer = document.getElementById(
@@ -84,13 +85,12 @@ function makePageNumberBtn(pageNumber, current = false) {
  * Render the pagination buttons on the document
  *
  * @param {integer} start - the starting page value
- * @param {integer} pageSize - the max number of page button in the pagination control
  * @param {integer} pageCount - the max value of the pagination control
  */
-function renderPaginationControl(start, pageSize, pageCount) {
+function renderPaginationControl(start, pageCount) {
   paginationControlContainer.innerHTML = '';
   let buttons = '';
-  for (let i = start; i < start + pageSize; i++) {
+  for (let i = start; i < start + NUMBER_OF_PAGE_NUMBER_BUTTONS; i++) {
     if (i === start) {
       buttons += makePageNumberBtn(i, true);
       continue;
@@ -122,20 +122,18 @@ function renderPaginationControl(start, pageSize, pageCount) {
 /**
  * Render both pagination control and movies on the document
  *
- * @param {integer} page - the value of the current page
- * @param {integer} paginationSize - the max number of page button in the pagination control
+ * @param {integer} currentPage - the value of the current page
  * @param {integer} maxPageCount - the max value of the pagination control
  */
 async function renderPageOfMoviesAndPaginationControl(
-  page,
-  paginationSize = 10,
+  currentPage,
   maxPageCount
 ) {
-  renderPaginationControl(page, paginationSize, maxPageCount);
+  renderPaginationControl(currentPage, maxPageCount);
   displayLoadingScreen();
 
   try {
-    let movieData = await getMoviesData(page, paginationSize);
+    let movieData = await getMoviesData(currentPage);
     renderPageOfMovies(movieData);
   } catch (error) {
     console.error('Something wen wrong here!' + error);
@@ -152,9 +150,9 @@ async function renderPageOfMoviesAndPaginationControl(
  * @param {integer} itemLimit - the limit of how many movies to fetch in one request
  * @returns the fetched data formatted as a JSON object
  */
-async function getMoviesData(page, itemLimit = 10) {
+async function getMoviesData(page) {
   const response = await fetch(
-    `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=${itemLimit}`
+    `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=${NUMBER_OF_MOVIES_PER_PAGE}`
   );
 
   if (!response.ok) {
@@ -190,7 +188,7 @@ async function initFirstPageOfMoviesAndPaginationControl(maxPageCount) {
 
   renderPageOfMoviesAndPaginationControl(
     1,
-    maxCountOfPageNumberBtns,
+    NUMBER_OF_PAGE_NUMBER_BUTTONS,
     maxPageCount
   );
 }
@@ -206,7 +204,6 @@ async function main() {
     if (e.target.classList.contains('pageBtn')) {
       renderPageOfMoviesAndPaginationControl(
         parseInt(e.target.dataset.page),
-        maxCountOfPageNumberBtns,
         maxPageCount
       );
     }

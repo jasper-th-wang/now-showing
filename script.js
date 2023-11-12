@@ -58,7 +58,7 @@ async function renderPageOfMovies(movieData) {
  *
  * @param {string} name - the name of the button
  * @param {integer} value - the page value of this button holds
- * @returns a rendered special button
+ * @returns a rendered named button with specified value stored in data-page attribute
  */
 function makeNamedBtnWithValueOf(name, value = 0) {
   return `<button class="pageBtn" id="${name}Btn" data-page="${value}">${

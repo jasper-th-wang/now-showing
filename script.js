@@ -156,7 +156,7 @@ async function getMoviesData(page) {
   );
 
   if (!response.ok) {
-    throw new Error('Something went wrong with the query ⚠,  response not OK️');
+    throw new Error('Something went wrong with the query ⚠, response not OK️');
   }
   const responseJson = await response.json();
 

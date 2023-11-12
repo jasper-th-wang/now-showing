@@ -188,7 +188,6 @@ async function initFirstPageAndPaginationControl() {
  * Initialize all presentation logic and event listeners
  */
 async function main() {
-  // fetch movies data count
   getMaxPageCount();
   initFirstPageAndPaginationControl();
 

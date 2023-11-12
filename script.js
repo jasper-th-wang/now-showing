@@ -82,7 +82,7 @@ function makePageBtn(pageNumber, current = false) {
  *
  * @param {integer} start - the starting page value
  * @param {integer} pageSize - the max number of page button in the pagination control
- * @param {*} pageCount - the max value of the pagination control
+ * @param {integer} pageCount - the max value of the pagination control
  */
 function renderPaginationControl(start, pageSize, pageCount) {
   // Clear the content in pageControl container
@@ -121,8 +121,8 @@ function renderPaginationControl(start, pageSize, pageCount) {
  * Render both pagination control and movies
  *
  * @param {integer} page - the value of the current page
- * @param {*} paginationSize - the max number of page button in the pagination control
- * @param {*} maxPageCount - the max value of the pagination control
+ * @param {integer} paginationSize - the max number of page button in the pagination control
+ * @param {integer} maxPageCount - the max value of the pagination control
  */
 async function renderPageAndPaginationControl(
   page,

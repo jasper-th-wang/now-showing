@@ -1,6 +1,6 @@
 'use strict';
 const paginationControlSize = 10;
-let maxPageCount;
+// let maxPageCount;
 const moviesContainer = document.querySelector('.movies');
 const loaderContainer = document.querySelector('.loader-container');
 const pageNav = document.getElementById('pageNav');
@@ -169,13 +169,15 @@ async function getMoviesData(page, itemLimit = 10) {
  */
 async function getMaxPageCount() {
   const initMovieData = await getMoviesData(1);
-  maxPageCount = Math.ceil(initMovieData.movie_count / 10);
+  return Math.ceil(initMovieData.movie_count / 10);
 }
 
 /**
  * Initialize page for first page load
+ *
+ * @param {integer} maxPageCount - number of pages to display all movies
  */
-async function initFirstPageAndPaginationControl() {
+async function initFirstPageAndPaginationControl(maxPageCount) {
   // inject first, last buttons
   pageNav.insertAdjacentHTML('afterbegin', makeSpecialBtn('first', 1));
   pageNav.insertAdjacentHTML('beforeend', makeSpecialBtn('last', maxPageCount));
@@ -188,8 +190,8 @@ async function initFirstPageAndPaginationControl() {
  * Initialize all presentation logic and event listeners
  */
 async function main() {
-  getMaxPageCount();
-  initFirstPageAndPaginationControl();
+  const maxPageCount = await getMaxPageCount();
+  initFirstPageAndPaginationControl(maxPageCount);
 
   // listens for click to re-render pagination control
   document.addEventListener('click', async (e) => {

@@ -16,7 +16,7 @@ function displayLoadingScreen() {
 }
 
 /**
- * Render one movie using JSON data fetched from YTS api
+ * Render one movie using JSON data fetched from YTS api on the document
  *
  * @param {JSON object} data - data of one movie formatted in JSON format
  */
@@ -40,7 +40,7 @@ function renderMovie(data) {
 }
 
 /**
- * Display Movies using JSON data fetched from YTS api
+ * Render Movies using JSON data fetched from YTS api on the document
  *
  * @param {JSON object} movieData - movie data
  */
@@ -52,7 +52,7 @@ async function renderPageOfMovies(movieData) {
 }
 
 /**
- * Render a special button such as "Previous", "First"...etc.
+ * Produce and return a special button such as "Previous", "First"...etc.
  *
  * @param {string} name - the name of the button
  * @param {integer} value - the page value of this button holds
@@ -65,7 +65,7 @@ function makeSpecialBtn(name, value = 0) {
 }
 
 /**
- * Render a page button
+ * Produce and return a page button
  *
  * @param {integer} pageNumber - the page value the button represent
  * @param {boolean} current - whether the rendering button represents the current page
@@ -80,7 +80,7 @@ function makePageNumberBtn(pageNumber, current = false) {
 }
 
 /**
- * Render the pagination buttons
+ * Render the pagination buttons on the document
  *
  * @param {integer} start - the starting page value
  * @param {integer} pageSize - the max number of page button in the pagination control
@@ -120,7 +120,7 @@ function renderPaginationControl(start, pageSize, pageCount) {
 }
 
 /**
- * Render both pagination control and movies
+ * Render both pagination control and movies on the document
  *
  * @param {integer} page - the value of the current page
  * @param {integer} paginationSize - the max number of page button in the pagination control
@@ -166,7 +166,7 @@ async function getMoviesData(page, itemLimit = 10) {
 }
 
 /**
- * Get max page count with querying YTS api
+ * Get max page count by querying YTS api
  */
 async function getMaxPageCount() {
   const initMovieData = await getMoviesData(1);
@@ -174,7 +174,7 @@ async function getMaxPageCount() {
 }
 
 /**
- * Initialize page for first page load
+ * Initialize page on first page load
  *
  * @param {integer} maxPageCount - number of pages to display all movies
  */

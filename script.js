@@ -9,7 +9,7 @@ const pageControl = document.getElementById('paginationControl');
 /**
  * Display loading screen
  */
-function displayLoad() {
+function displayLoadingScreen() {
   moviesContainer.style.opacity = 0;
   loaderContainer.style.display = 'grid';
 }
@@ -131,7 +131,7 @@ async function renderPageAndPaginationControl(
   maxPageCount
 ) {
   renderPaginationControl(page, paginationSize, maxPageCount);
-  displayLoad();
+  displayLoadingScreen();
 
   try {
     let movieData = await getMoviesData(page, paginationSize);

@@ -193,14 +193,14 @@ async function initializePage(maxPageCount) {
  * Initialize all presentation logic and event listeners
  */
 async function main() {
-  const maxPageCount = await getMaxPageCount();
-  initializePage(maxPageCount);
+  const maxPageNumber = await getMaxPageCount();
+  initializePage(maxPageNumber);
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('pageBtn')) {
       renderPageOfMoviesAndPaginationControl(
         parseInt(e.target.dataset.page),
-        maxPageCount
+        maxPageNumber
       );
     }
   });

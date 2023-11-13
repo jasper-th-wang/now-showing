@@ -54,33 +54,18 @@ async function renderPageOfMovies(movieData) {
 }
 
 /**
- * Produce and return a named button such as "Previous", "First"...etc.
+ * Produce and return a page button, a named button such as "Previous", "First"... etc.
  *
- * @param {string} name - the name of the button
- * @param {integer} value - the page value of this button holds
- * @returns a rendered named button with specified value stored in data-page attribute
+ * @param {Object} an object representing information of a page button
+ * @returns
  */
-function makeNamedBtnWithValueOf(name, value = 0) {
-  return `<button class="pageBtn" id="${name}Btn" data-page="${value}">${
-    name.charAt(0).toUpperCase() + name.slice(1)
+function makeButton({ name, value, isCurrentPage }) {
+  return `<button class="${
+    isCurrentPage ? 'currentBtn' : ''
+  } pageBtn" data-page="${value}">${
+    name === 'page' ? value : name.charAt(0).toUpperCase() + name.slice(1)
   }</button>`;
 }
-
-/**
- * Produce and return a page button
- *
- * @param {integer} pageNumber - the page value the button represent
- * @param {boolean} current - whether the rendering button represents the current page
- * @returns a rendered page button
- */
-function makePageNumberBtn(pageNumber, current = false) {
-  const currentClass = current ? 'currentBtn' : '';
-  return `<button class="${currentClass} pageBtn"
-  id="button${pageNumber}" data-page=${pageNumber}>
-  ${pageNumber}
-  </button>`;
-}
-
 /**
  * Render the pagination buttons on the document
  *
@@ -92,7 +77,11 @@ function renderPaginationControl(start, maxPageNumber) {
   let buttons = '';
   for (let i = start; i < start + NUMBER_OF_PAGE_NUMBER_BUTTONS; i++) {
     if (i === start) {
-      buttons += makePageNumberBtn(i, true);
+      buttons += makeButton({
+        name: 'page',
+        value: i,
+        isCurrentPage: true,
+      });
       continue;
     }
 
@@ -100,7 +89,11 @@ function renderPaginationControl(start, maxPageNumber) {
       continue;
     }
 
-    buttons += makePageNumberBtn(i);
+    buttons += makeButton({
+      name: 'page',
+      value: i,
+      isCurrentPage: false,
+    });
   }
 
   paginationControlContainer.insertAdjacentHTML('beforeend', buttons);
@@ -108,14 +101,22 @@ function renderPaginationControl(start, maxPageNumber) {
   if (start > 1) {
     paginationControlContainer.insertAdjacentHTML(
       'afterbegin',
-      makeNamedBtnWithValueOf('Previous', start - 1)
+      makeButton({
+        name: 'previous',
+        value: start - 1,
+        isCurrentPage: false,
+      })
     );
   }
 
   if (start < maxPageNumber)
     paginationControlContainer.insertAdjacentHTML(
       'beforeend',
-      makeNamedBtnWithValueOf('Next', start + 1)
+      makeButton({
+        name: 'next',
+        value: start + 1,
+        isCurrentPage: false,
+      })
     );
 }
 
@@ -179,11 +180,19 @@ async function getMaxPageNumber() {
 async function initializePage(maxPageNumber) {
   paginationControlOuterContainer.insertAdjacentHTML(
     'afterbegin',
-    makeNamedBtnWithValueOf('first', 1)
+    makeButton({
+      name: 'first',
+      value: 1,
+      isCurrentPage: false,
+    })
   );
   paginationControlOuterContainer.insertAdjacentHTML(
     'beforeend',
-    makeNamedBtnWithValueOf('last', maxPageNumber)
+    makeButton({
+      name: 'last',
+      value: maxPageNumber,
+      isCurrentPage: false,
+    })
   );
 
   renderPageOfMoviesAndPaginationControl(1, maxPageNumber);

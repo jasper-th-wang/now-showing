@@ -21,7 +21,6 @@
 
 - [📖 Table of Contents](#-table-of-contents)
 - [📍 Overview](#-overview)
-- [📦 Features](#-features)
 - [📂 repository Structure](#-repository-structure)
 - [⚙️ Modules](#modules)
 - [🚀 Getting Started](#-getting-started)
@@ -45,25 +44,6 @@ A loading animation ensures a smooth user experience while movie data is being f
 Here is the link to the live demo of this app:
 
 https://serene-choux-3c9353.netlify.app
-
----
-
-## 📦 Features
-
-```markdown
-|     | Feature             | Description                                                                                                          |
-| --- | ------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| ⚙️  | **Architecture**    | The system employs a simple three-tier architecture composed of an HTML frontend, JavaScript logic, and CSS styling. |
-| 📄  | **Documentation**   | Documentation is minimal, with code comments in `script.js` offering insight into the application's functionality.   |
-| 🔗  | **Dependencies**    | It uses basic web technologies (HTML, CSS, JavaScript), with no external library dependencies listed.                |
-| 🧩  | **Modularity**      | Modularity is limited; the application logic is contained within a single JavaScript file.                           |
-| 🧪  | **Testing**         | No testing framework or tests present; the system's testing strategy is not clear.                                   |
-| ⚡️ | **Performance**     | Performance considerations are not explicitly addressed but the simplicity suggests low resource usage.              |
-| 🔐  | **Security**        | Security is not directly addressed; relies on browser sandboxing and the security of the referenced APIs.            |
-| 🔀  | **Version Control** | Version control specifics are not provided; assumes standard Git practices without further elucidation.              |
-| 🔌  | **Integrations**    | Integrates with the YTS API to fetch movie data; no other external systems are mentioned.                            |
-| 📶  | **Scalability**     | Scalability is not a focus; the site may handle increased traffic but could face limitations with larger datasets.   |
-```
 
 ---
 

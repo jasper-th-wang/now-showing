@@ -1,63 +1,120 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12839330&assignment_repo_type=AssignmentRepo)
-Assignment Requirements: Pagination in JavaScript with YTS API
+<div align="center">
+<h1 align="center">
+<br>NOW SHOWING!</h1>
+<h3>◦ What's playing in the theatre??</h3>
+<h3>◦ Developed with the software and tools below.</h3>
 
-**Objective:**
-The objective of this assignment is to create a web page that fetches and paginates a list of movies from the YTS API. The pagination should display 10 movies at a time, emphasize the current page using CSS, and include buttons for navigating to the first, last, previous, and next pages.
+<p align="center">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat-square&logo=JavaScript&logoColor=black" alt="JavaScript" />
+<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=flat-square&logo=HTML5&logoColor=white" alt="HTML5" />
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS" />
+</p>
+<img src="https://img.shields.io/github/license/jasper-th-wang/now-showing?style=flat-square&color=5D6D7E" alt="GitHub license" />
+<img src="https://img.shields.io/github/last-commit/jasper-th-wang/now-showing?style=flat-square&color=5D6D7E" alt="git-last-commit" />
+<img src="https://img.shields.io/github/commit-activity/m/jasper-th-wang/now-showing?style=flat-square&color=5D6D7E" alt="GitHub commit activity" />
+<img src="https://img.shields.io/github/languages/top/jasper-th-wang/now-showing?style=flat-square&color=5D6D7E" alt="GitHub top language" />
+</div>
 
+---
 
-**Demo** 
-![](https://cdn.discordapp.com/attachments/1149469347123830804/1171470962689069128/screencapture-file-C-Courses-comp1537-f23-Assignment2-index-html-2023-11-07-07_25_27.png?ex=655ccc5a&is=654a575a&hm=3cf8df226fdd42b8c665729c33eb4cdff94ba7554047044def26b3ac25df21af&)
+## 📖 Table of Contents
 
-Demo page - [https://resplendent-zabaione-22d5b1.netlify.app/]
+- [📖 Table of Contents](#-table-of-contents)
+- [📍 Overview](#-overview)
+- [📦 Features](#-features)
+- [📂 repository Structure](#-repository-structure)
+- [⚙️ Modules](#modules)
+- [🚀 Getting Started](#-getting-started)
+  - [🔧 Installation](#-installation)
+  - [🤖 Running now-showing](#-running-now-showing)
 
-**Instructions:**
+---
 
-1. **Setup:**
-   - Create an HTML page with the necessary structure.
-   - Include the appropriate JavaScript and CSS files.
+## 📍 Overview
 
-2. **YTS API Integration:**
-   - Utilize the YTS API (https://yts.mx/api) to fetch a list of movies.
-   - You may use the following endpoint to fetch movies: `https://yts.mx/api/v2/list_movies.json`
+Now Showing is a simple responsive web application that presents a user-friendly interface for browsing movie listings, sourced from the YTS API.
 
-3. **Pagination Logic:**
-   - Implement JavaScript code to paginate the fetched movie data.
-   - Display 10 movies per page.
-   - Initially, display the first 10 movies.
+It features an engaging design with movie cards that display images, titles, genres, and ratings. The site comes with navigation controls, including pagination buttons, to effortlessly browse through different pages of movies.
 
-4. **Pagination Controls:**
-   - Implement pagination controls as described below:
-     - Previous Page: A "Previous" button to navigate to the previous page. If there are no previous pages, disable/hide this button.
-     - First Page: A "First" button to navigate to the first page.
-     - Next Page: A "Next" button to navigate to the next page. If there are no more pages, disable/hide this button.
-     - Last Page: A "Last" button to navigate to the last page.
-     - Page Numbers: Display a maximum of 10 page number buttons, including the current page. Emphasize the current page number using CSS.
+A loading animation ensures a smooth user experience while movie data is being fetched. Adding to its usability, the site is styled for various screen sizes, providing an accessible and visually appealing platform for movie enthusiasts to discover new films.
 
-5. **Styling:**
-   - Use CSS to style the pagination controls and the current page.
-   - Emphasize the current page number so that it's visually distinct from other page numbers.
+---
 
-6. **Event Handling:**
-   - Implement event handlers for each pagination control button (e.g., click events for Next, Previous, First, Last, and page number buttons).
+## 🎈 Demo
 
-7. **Display:**
-   - Display movie data on the web page.
-   - Update the displayed movies when the user interacts with the pagination controls.
+Here is the link to the live demo of this app:
 
-8. **Documentation:**
-   - Provide comments in your JavaScript code to explain the purpose of each function or block of code.
+https://serene-choux-3c9353.netlify.app
 
+---
 
-**Grading Criteria:**
+## 📦 Features
 
-The assignment will be graded based on the following criteria:
+```markdown
+|     | Feature             | Description                                                                                                          |
+| --- | ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| ⚙️  | **Architecture**    | The system employs a simple three-tier architecture composed of an HTML frontend, JavaScript logic, and CSS styling. |
+| 📄  | **Documentation**   | Documentation is minimal, with code comments in `script.js` offering insight into the application's functionality.   |
+| 🔗  | **Dependencies**    | It uses basic web technologies (HTML, CSS, JavaScript), with no external library dependencies listed.                |
+| 🧩  | **Modularity**      | Modularity is limited; the application logic is contained within a single JavaScript file.                           |
+| 🧪  | **Testing**         | No testing framework or tests present; the system's testing strategy is not clear.                                   |
+| ⚡️ | **Performance**     | Performance considerations are not explicitly addressed but the simplicity suggests low resource usage.              |
+| 🔐  | **Security**        | Security is not directly addressed; relies on browser sandboxing and the security of the referenced APIs.            |
+| 🔀  | **Version Control** | Version control specifics are not provided; assumes standard Git practices without further elucidation.              |
+| 🔌  | **Integrations**    | Integrates with the YTS API to fetch movie data; no other external systems are mentioned.                            |
+| 📶  | **Scalability**     | Scalability is not a focus; the site may handle increased traffic but could face limitations with larger datasets.   |
+```
 
-- Successful integration with the YTS API.
-- Correct implementation of pagination controls.
-- Proper styling and emphasis on the current page number.
-- Functional and responsive pagination that allows users to navigate through the movie list.
-- Code quality and documentation.
-- Error handling for API requests.
+---
 
-**Note:**
-Make sure to test your implementation thoroughly and ensure that it works as expected. You can refer to the YTS API documentation for more details on how to fetch movie data. Good luck with your assignment!
+## 📂 Repository Structure
+
+```sh
+└── now-showing/
+    ├── index.html
+    ├── script.js
+    └── style.css
+
+```
+
+---
+
+## ⚙️ Modules
+
+| File                                                                             | Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [index.html](https://github.com/jasper-th-wang/now-showing/blob/main/index.html) | The `index.html` establishes the structure for a webpage titled Now Showing with responsive design features that include a loading animation (`loader-container`), pagination controls (`pagination`), and content areas for movies and images (`container`). It references external styling (`style.css`) and font resources, and defers loading of a JavaScript file (`script.js`).                                                                                                                                                                                                                                                                                                                                                    |
+| [script.js](https://github.com/jasper-th-wang/now-showing/blob/main/script.js)   | The JavaScript code manages the presentation of a paginated movie listing using data from the YTS API. It renders movies and pagination controls on a web page and handles user interactions with these controls:1. It fetches movie data for a given page and displays a loading screen until the data is loaded.2. Movies are displayed in cards with an image, title, genre, and rating.3. Pagination controls with buttons for navigation (e.g., previous, next, first, last) are rendered for easy page switching.4. An event listener responds to button clicks, updating the movie display and active pagination button.The code also handles errors such as failed data fetching and initializes the interface upon page load.   |
+| [style.css](https://github.com/jasper-th-wang/now-showing/blob/main/style.css)   | The `style.css` file provides styling for a responsive movie display web application featuring a grid of movie cards. It globally removes margins and padding and sets border-box model. The HTML root size is scaled down for responsive font sizing. The body has a system font with a light background and full viewport height. Flexbox is used for layout structure with responsive grid displaying movie cards, which reveal ratings on hover and apply a blur effect to the images. Additionally, there are styles for a loading animation, which uses CSS masks and keyframes, and a pagination system with buttons that change color to indicate the current page. The media query optimizes the grid layout for wider screens. |
+
+</details>
+
+---
+
+## 🚀 Getting Started
+
+**_Dependencies_**
+
+Please ensure you have the following dependencies installed on your system:
+
+`- ℹ️ Dependency: live-server`
+
+### 🔧 Installation
+
+1. Clone the now-showing repository:
+
+```sh
+git clone https://github.com/jasper-th-wang/now-showing
+```
+
+2. Change to the project directory:
+
+```sh
+cd now-showing
+```
+
+### 🤖 Running now-showing
+
+```sh
+live-server .
+```
